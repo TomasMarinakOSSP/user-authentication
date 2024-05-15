@@ -23,7 +23,8 @@ final class UserFacade implements Nette\Security\Authenticator
 		ColumnName = 'username',
 		ColumnPasswordHash = 'password',
 		ColumnEmail = 'email',
-		ColumnRole = 'role';
+		ColumnRole = 'role',
+		ColumnCreateAt = 'created_at';
 
 	// Dependency injection of database explorer and password utilities
 	public function __construct(
@@ -79,6 +80,7 @@ final class UserFacade implements Nette\Security\Authenticator
 				self::ColumnName => $username,
 				self::ColumnPasswordHash => $this->passwords->hash($password),
 				self::ColumnEmail => $email,
+				self::ColumnCreateAt => new \DateTime(),
 			]);
 		} catch (Nette\Database\UniqueConstraintViolationException $e) {
 			throw new DuplicateNameException;
