@@ -1,0 +1,14 @@
+{block content}
+    <h1>Edit Post</h1>
+
+    
+
+    {if $post->image}
+    {if isset($post) && $post->image}
+    <img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}">
+    {/if}
+    <a n:href="deleteImage! $post->id">Smazat obrázek</a>
+{/if}
+
+    {control postForm}
+{/block}

@@ -1,0 +1,40 @@
+{block content}
+
+    <div class="prispevky">
+    {foreach $posts as $post}
+        {if $post->status !== 'ARCHIVED' || $user->isLoggedIn()}
+            <div class="post">
+                <div class="date">{$post->created_at|date:'F j, Y'}</div>
+
+                <h2><a n:href="Post:show $post->id">{$post->title}</a></h2>
+
+                <img src="{$basePath}/{$post->image}" class="img-fluid" alt="Obrázek k článku {$post->title}">
+
+                <div>{$post->content|truncate:256}</div>
+
+                <div class="views">Počet zhlédnutí: {$post->views}</div>
+            </div>
+        {/if}
+    {/foreach}
+    </div>
+
+    {if $paginator->pageCount > 1} {* zobrazíme pouze pokud je více než 1 strana *}
+    <div class="pagination"> {* vytvoříme odkazy na stránkování *}
+        <span class="page">Strana {$paginator->page} z {$paginator->pageCount}</span> {* zobrazíme aktuální stránku a celkový počet stran *}
+        <span class="controls"> {* ovládací prvky pro přechod na další a předchozí stránku *}
+            {if $paginator->isFirst()} {* pokud jsme na první stránce, zobrazíme jen text, jinak odkaz *}
+                <span class="disabled">« Předchozí</span> {* zobrazení textu pro předchozí stránku *}
+            {else}
+                <a n:href="this, page => $paginator->page - 1">« Předchozí</a> {* odkaz na předchozí stránku *}
+            {/if}
+            {if $paginator->isLast()} {* pokud jsme na poslední stránce, zobrazíme jen text, jinak odkaz *}
+                <span class="disabled">Další »</span> {* zobrazení textu pro další stránku *}
+            {else}
+                <a n:href="this, page => $paginator->page + 1">Další »</a> {* odkaz na další stránku *}
+            {/if}
+        </span>
+    </div>
+    {/if}
+
+    <a n:href="Edit:create">Napsat nový příspěvek</a>
+{/block}

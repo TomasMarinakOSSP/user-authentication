@@ -1,0 +1,41 @@
+{block content}
+    <p><a n:href="Home:default">← zpět na výpis příspěvků</a></p>
+
+    {if $post->status !== 'ARCHIVED' || $user->isLoggedIn()}
+
+        <div class="date">{$post->created_at|date:'F j, Y'}</div>
+
+        <h1>{$post->title}</h1>
+
+        <div class="post">{$post->content}</div>
+
+        {if $post->image}
+            <img src="{$basePath}/{$post->image}" width="200" alt="Obrázek k článku {$post->title}">
+        {/if}
+
+        <div class="status">Stav: {$post->status}</div>
+
+        <div class="views">Počet zhlédnutí: {$post->views}</div> <!-- Přidáme zobrazení počtu zhlédnutí -->
+
+        {if $post->status === 'OPEN'}
+            <h2>Vložte nový příspěvek</h2>
+            {control commentForm}
+        {elseif $post->status === 'CLOSED' && $user->isLoggedIn()}
+            <h2>Přidání komentáře je povoleno pouze přihlášeným uživatelům.</h2>
+            {control commentForm}
+        {else}
+            <h2>Komentáře nelze přidávat.</h2>
+        {/if}
+
+        <div class="comments">
+            {foreach $comments as $comment}
+                <p><b>{$comment->name}</b> napsal:</p>
+                <div>{$comment->content}</div>
+            {/foreach}
+
+            <a n:href="Edit:edit $post->id">Upravit příspěvek</a>
+
+        </div>
+
+    {/if}
+{/block}

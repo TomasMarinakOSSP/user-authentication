@@ -1,0 +1,104 @@
+header {
+    background-color: red; /* Barva pozadí */
+    color: white; /* Barva textu */
+    padding: 20px 0; /* Odsazení zhora a zdola */
+    text-align: center; /* Zarovnání textu na střed */
+}
+
+header h1 {
+    margin: 0; /* Zrušení vnějšího okraje */
+    font-size: 32px; /* Velikost písma */
+}
+
+
+nav ul.navigation {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: red;
+    display: flex; /* Použití Flexboxu */
+}
+
+nav ul.navigation li {
+    display: inline; /* Zobrazení prvků vedle sebe */
+}
+
+nav ul.navigation li a {
+    display: block; /* Zobrazení odkazů jako blokových prvků */
+    padding: 10px 15px; /* Odsazení pro vnitřní prostor */
+    text-decoration: none; /* Zrušení podtržení odkazů */
+    color: white; /* Bílá barva textu */
+}
+
+nav ul.navigation li a:hover {
+    background-color: darkred; /* Barva pozadí po najetí myší */
+}
+
+
+
+
+
+
+a {
+    color: red;
+}
+
+.post {
+    flex: 1 1 calc(20% - 20px); /* 20% šířky s mezerou 20px mezi jednotlivými příspěvky */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-sizing: border-box;
+    height: 20em;
+}
+
+
+.date {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.views {
+    font-size: 12px;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+/* Přizpůsobení obrázků */
+.img-fluid {
+    max-width: 10em;
+    max-height: 10em;
+}
+
+.prispevky {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* mezera mezi jednotlivými příspěvky */
+    
+}
+
+
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.page {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.controls a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+
+
